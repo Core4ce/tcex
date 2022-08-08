@@ -70,7 +70,7 @@ class TiTcRequest:
         )
         if len(r.content) < 500:
             self.log.trace(f'response: {r.text}')
-        if not r.ok:
+        if not r.ok and r.status_code != 404:
             err = r.text or r.reason
             self.log.error(f'Error getting data ({err}')
         return r
